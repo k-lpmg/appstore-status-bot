@@ -12,6 +12,22 @@ def get_app_state(app)
   version_string = ""
   app_store_state = ""
 
+  puts 'edit_version_info'
+  puts edit_version_info.version_string
+  puts edit_version_info.app_store_state.gsub("_", " ").capitalize
+
+  puts 'in_review_version_info'
+  puts in_review_version_info.version_string
+  puts in_review_version_info.app_store_state.gsub("_", " ").capitalize
+
+  puts 'pending_version_info'
+  puts pending_version_info.version_string
+  puts pending_version_info.app_store_state.gsub("_", " ").capitalize
+
+  puts 'live_version_info'
+  puts live_version_info.version_string
+  puts live_version_info.app_store_state.gsub("_", " ").capitalize
+
   if edit_version_info.nil? == false
     version_string = edit_version_info.version_string
     app_store_state = edit_version_info.app_store_state.gsub("_", " ").capitalize
