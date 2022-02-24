@@ -13,16 +13,16 @@ def get_app_state(app)
   app_store_state = ""
 
   puts 'edit_version_info'
-  puts edit_version_info
+  puts JSON.parse(edit_version_info)
 
   puts 'in_review_version_info'
-  puts in_review_version_info
+  puts JSON.parse(in_review_version_info)
 
   puts 'pending_version_info'
-  puts pending_version_info
+  puts JSON.parse(pending_version_info)
 
   puts 'live_version_info'
-  puts live_version_info
+  puts JSON.parse(live_version_info)
 
   if edit_version_info.nil? == false
     version_string = edit_version_info.version_string
