@@ -7,7 +7,6 @@ def get_app_state(app)
   edit_version_info = app.get_edit_app_store_version
   in_review_version_info = app.get_in_review_app_store_version
   pending_version_info = app.get_pending_release_app_store_version
-  live_version_info = app.get_live_app_store_version
   latest_version_info = app.get_latest_app_store_version
   
   version_string = ""
@@ -22,18 +21,15 @@ def get_app_state(app)
   elsif pending_version_info.nil? == false 
     version_string = pending_version_info.version_string
     app_store_state = pending_version_info.app_store_state.gsub("_", " ").capitalize
-  elsif live_version_info.nil? == false 
-    version_string = live_version_info.version_string
-    app_store_state = live_version_info.app_store_state.gsub("_", " ").capitalize
   elsif latest_version_info.nil? == false 
     version_string = latest_version_info.version_string
     app_store_state = latest_version_info.app_store_state.gsub("_", " ").capitalize
   end
 
   icon_url = ""
-  
-  if version_info.nil? == false
-    icon_url = version_info.build.icon_asset_token["templateUrl"]
+  live_version_info = app.get_live_app_store_version
+  if live_version_info.nil? == false
+    icon_url = live_version_info.build.icon_asset_token["templateUrl"]
     icon_url["{w}"] = "340"
     icon_url["{h}"] = "340"
     icon_url["{f}"] = "png"
