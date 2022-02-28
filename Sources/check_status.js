@@ -72,10 +72,7 @@ async function getGist() {
   };
 
   const result = await request.get(options);
-  console.log("result: ", result);
-  console.log("result.body: ", result.body);
-  const body = result.body;
-  fs.writeFile("store.db", body, function (error) {
+  fs.writeFile("store.db", result, function (error) {
     if (error) {
       return console.log(error);
     }
