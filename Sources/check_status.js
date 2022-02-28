@@ -8,7 +8,7 @@ const fs = require("fs");
 const env = Object.create(process.env);
 const octokit = new Octokit({ auth: `token ${process.env.GH_TOKEN}` });
 
-getGist();
+await getGist();
 
 exec(
   "ruby Sources/fetch_app_status.rb",
