@@ -4,11 +4,11 @@ const dirty = require("dirty");
 const { Octokit, App } = require("octokit");
 const request = require("request-promise-native");
 const { prependOnceListener } = require("process");
-const fs = require("fs");
+const fs = require("fs").promises;
 const env = Object.create(process.env);
 const octokit = new Octokit({ auth: `token ${process.env.GH_TOKEN}` });
 
-getGist();
+await getGist();
 
 exec(
   "ruby Sources/fetch_app_status.rb",
@@ -46,13 +46,12 @@ function checkVersion(app) {
 
     db.set(appInfoKey, app);
 
-    fs.readFile("store.db", "utf-8", (error, data) => {
-      if (error) {
-        return console.log(error);
-      }
-
+    try {
+      const data = await fs.readFile("store.db", "utf-8");
       updateGist(data);
-    });
+    } catch (error) {
+      console.log(error);
+    }
   });
 }
 
@@ -72,12 +71,12 @@ async function getGist() {
   };
 
   const result = await request.get(options);
-  fs.writeFile("store.db", result, function (error) {
-    if (error) {
-      return console.log(error);
-    }
+  try {
+    await fs.writeFile("store.db", result);
     console.log("[*] file saved!");
-  });
+  } catch (error) {
+    return console.log(error);
+  }
 }
 
 async function updateGist(content) {
