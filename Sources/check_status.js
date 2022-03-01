@@ -48,7 +48,7 @@ function checkVersion(app) {
 
     try {
       const data = await fs.readFile("store.db", "utf-8");
-      updateGist(data);
+      await updateGist(data);
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +75,7 @@ async function getGist() {
     await fs.writeFile("store.db", result);
     console.log("[*] file saved!");
   } catch (error) {
-    return console.log(error);
+    console.log(error);
   }
 }
 
