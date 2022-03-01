@@ -35,7 +35,8 @@ const checkVersion = async (app) => {
   var appInfoKey = "appInfo-" + app.appID;
   var submissionStartKey = "submissionStart" + app.appID;
 
-  const db = dirty("store.db").on("load", function () {
+  const db = dirty("store.db");
+  db.on("load", async function () {
     var lastAppInfo = db.get(appInfoKey);
     if (!lastAppInfo || lastAppInfo.status != app.status) {
       console.log("[*] status is different");
