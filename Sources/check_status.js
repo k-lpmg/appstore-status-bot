@@ -31,7 +31,7 @@ const main = async () => {
   );
 };
 
-function checkVersion(app) {
+const checkVersion = async (app) => {
   var appInfoKey = "appInfo-" + app.appID;
   var submissionStartKey = "submissionStart" + app.appID;
 
@@ -57,9 +57,9 @@ function checkVersion(app) {
       console.log(error);
     }
   });
-}
+};
 
-async function getGist() {
+const getGist = async () => {
   const gist = await octokit.rest.gists
     .get({
       gist_id: process.env.GIST_ID,
@@ -81,9 +81,9 @@ async function getGist() {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-async function updateGist(content) {
+const updateGist = async (content) => {
   const gist = await octokit.rest.gists
     .get({
       gist_id: process.env.GIST_ID,
@@ -100,4 +100,4 @@ async function updateGist(content) {
       },
     },
   });
-}
+};
