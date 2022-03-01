@@ -8,8 +8,6 @@ const fs = require("fs").promises;
 const env = Object.create(process.env);
 const octokit = new Octokit({ auth: `token ${process.env.GH_TOKEN}` });
 
-main();
-
 const main = async () => {
   await getGist();
 
@@ -102,3 +100,5 @@ const updateGist = async (content) => {
     },
   });
 };
+
+main();
