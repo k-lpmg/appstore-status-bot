@@ -21,8 +21,6 @@ jobs:
         with:
           ruby-version: "3.0" # Not needed with a .ruby-version file
 
-      - run: bundle exec rake
-
       - run: gem install bundler:2.1.4
 
       - run: bundle install
